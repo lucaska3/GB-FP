@@ -7,7 +7,7 @@ package inicio.CadItem;
 
 /**
  *
- * @author LucasKoury
+ * @author LucasKoury Do Git > charchar
  */
 public class FrmCadTcc extends javax.swing.JFrame {
 
