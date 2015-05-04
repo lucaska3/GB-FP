@@ -1,0 +1,468 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package inicio;
+import controller.PessoasJpaController;
+import controller.exceptions.IllegalOrphanException;
+import entity.Classe;
+import entity.Pessoas;
+import java.math.BigInteger;
+import java.text.DateFormat;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.GenerationType;
+import javax.persistence.Persistence;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+import inicio.Model;
+/**
+ *
+ * @author fp0520141051
+ */
+public class FrmCadFun extends javax.swing.JFrame {
+
+    /**
+     * Creates new form FrmCadPes
+     */
+    Model m = new Model();
+    char pes = m.getTipoPessoa();
+    private List<Pessoas> lista;
+    public FrmCadFun() throws ParseException {
+        initComponents();
+        setLocationRelativeTo(null);
+        
+        
+ DefaultTableModel modeloTabela = new DefaultTableModel();
+        modeloTabela.addColumn("Código");
+        modeloTabela.addColumn("Nome");
+        modeloTabela.addColumn("ID");
+        modeloTabela.addColumn("Sexo");
+        modeloTabela.addColumn("Data de Nascimento");
+        modeloTabela.addColumn("RG");
+        modeloTabela.addColumn("CPF");
+        modeloTabela.addColumn("Classe");
+        modeloTabela.addColumn("Emprestimos");
+        tblPessoas.setModel(modeloTabela);
+
+//        PessoasJpaController controle = new PessoasJpaController(
+//                Persistence.createEntityManagerFactory("tccBibliotecaPU"));
+//        
+//        lista = controle.findPessoasEntities();
+//        
+//        DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+//        for(Pessoas pessoas : lista)
+//            modeloCombo.addElement(pessoas);
+//        cbbClasse.setModel(modeloCombo);
+//        
+//        DefaultTableModel modeloTabela = new DefaultTableModel();
+//        modeloTabela.addColumn("Código");
+//        modeloTabela.addColumn("Nome");
+//        modeloTabela.addColumn("ID");
+//        modeloTabela.addColumn("Sexo");
+//        modeloTabela.addColumn("Data de Nascimento");
+//        modeloTabela.addColumn("RG");
+//        modeloTabela.addColumn("CPF");
+//        modeloTabela.addColumn("Classe");
+//        modeloTabela.addColumn("Emprestimos");
+//        for(Pessoas pessoas : lista){
+//            Vector lista = new Vector();
+//            lista.add(pessoas.getCodPes());
+//            lista.add(pessoas.getNomePes());
+//            lista.add(pessoas.getIdPes());
+//            lista.add(pessoas.getSexoPes());
+//            lista.add(pessoas.getNascPes());
+//            lista.add(pessoas.getRgPes());
+//            lista.add(pessoas.getCpfPes());
+//            lista.add(pessoas.getClassePes());
+//            modeloTabela.addRow(lista);
+//        }
+//        
+//        tblPessoas.setModel(modeloTabela);
+//        setFocusTraversalKeysEnabled(true);
+        
+        
+        System.out.println(pes);
+         if(pes == 'A')
+         {
+         lblTipoPes.setText("Aluno");
+         }
+         else if(pes == 'F')
+         {
+         lblTipoPes.setText("Funcionario");
+         }
+         else if(pes == 'P')
+         {
+             lblTipoPes.setText("Professores");
+         }
+                 
+         
+        
+        MaskFormatter dataMask = new MaskFormatter("##/##/####");
+        dataMask.setPlaceholderCharacter('_');
+        dataMask.setValueContainsLiteralCharacters(true);
+        dataMask.setValueClass(String.class);
+        DefaultFormatterFactory dffData = new DefaultFormatterFactory(dataMask);
+        txtDataNasc.setFormatterFactory(dffData);
+        
+        MaskFormatter cpfMask = new MaskFormatter("###.###.###-##");
+        cpfMask.setPlaceholderCharacter('_');
+        cpfMask.setValueContainsLiteralCharacters(true);
+        cpfMask.setValueClass(String.class);
+        DefaultFormatterFactory dffCpf = new DefaultFormatterFactory(cpfMask);
+        txtCpf.setFormatterFactory(dffCpf);
+        
+        MaskFormatter rgMask =new MaskFormatter("##.###.###-#");
+        rgMask.setPlaceholderCharacter('_');
+        rgMask.setValueContainsLiteralCharacters(true);
+        rgMask.setValueClass(String.class);
+        DefaultFormatterFactory dffRg = new DefaultFormatterFactory(rgMask);
+        txtRg.setFormatterFactory(dffRg);
+    }
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtRg = new javax.swing.JFormattedTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtCpf = new javax.swing.JFormattedTextField();
+        lblNum = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        lblTipoPes = new javax.swing.JLabel();
+        txtDataNasc = new javax.swing.JFormattedTextField();
+        jLabel14 = new javax.swing.JLabel();
+        lblClass = new javax.swing.JLabel();
+        rdbM = new javax.swing.JRadioButton();
+        cbbClasse = new javax.swing.JComboBox();
+        rdbF = new javax.swing.JRadioButton();
+        btnConfirmar = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblPessoas = new javax.swing.JTable();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel7.setText("CPF:");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel9.setText("Data de Nascimento:");
+
+        txtRg.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel11.setText("Nome:");
+
+        txtCpf.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+
+        lblNum.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblNum.setText("ID:");
+
+        txtNome.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        jLabel13.setText("Cadastro de");
+
+        txtId.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+
+        lblTipoPes.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        lblTipoPes.setText("Funcionario");
+
+        txtDataNasc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel14.setText("Sexo:");
+
+        lblClass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblClass.setText("Classe:");
+
+        rdbM.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        rdbM.setText("Homem");
+
+        cbbClasse.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cbbClasse.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        rdbF.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        rdbF.setText("Mulher");
+
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel16.setText("RG:");
+
+        tblPessoas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblPessoas);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel13)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblNum)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel7))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdbM)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdbF))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(19, 19, 19)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTipoPes)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel9)
+                                    .addComponent(lblClass))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbbClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnConfirmar)
+                                .addGap(64, 64, 64))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(lblTipoPes))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNum)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(rdbM)
+                            .addComponent(rdbF)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblClass)
+                            .addComponent(cbbClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConfirmar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        try {
+            Date date = new Date();
+            Pessoas pes = new Pessoas();
+            
+            PessoasJpaController controle = new PessoasJpaController(
+            Persistence.createEntityManagerFactory("tccBibliotecaPU"));
+            
+            boolean camposV = false;
+            String[] nomeV; // String para alertar quais campos estão falatndo
+            char sexo = 0;
+            //Formatação
+            
+            //CPF - cpfInt
+            String cpfString = ((txtCpf.getText()).replaceAll("[^\\d]", ""));
+            long cpfInt = Long.parseLong(cpfString);
+            BigInteger cpf = BigInteger.valueOf(cpfInt);
+            txtCpf.setText(null);
+            
+            //RG - rgInt
+            String rgString = ((txtRg.getText()).replaceAll("[^\\d]", ""));
+            long rgInt = Long.parseLong(rgString);
+            BigInteger rg = BigInteger.valueOf(rgInt);
+            txtRg.setText("");
+            
+            //Fim Formatação
+            
+            //Declarações
+            String nome = txtNome.getText();
+            String id = txtId.getText();
+            if(rdbM.isSelected()){
+                sexo ='M';
+            }if(rdbF.isSelected()){
+                sexo = 'F';
+            }
+            DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date dataNasc = (Date) sdf.parse(txtDataNasc.getText());
+            int classe = cbbClasse.getSelectedIndex();
+            
+            Calendar dataExpira = Calendar.getInstance();
+            dataExpira.add(Calendar.YEAR, 3);
+            
+            
+            pes.setNomePes(nome);
+            pes.setIdPes(id);
+            pes.setRgPes(rg);
+            pes.setCpfPes(cpf);
+            pes.setSexoPes(sexo);
+            pes.setNascPes(dataNasc);
+            pes.setDataIngressopes(date);
+            pes.setDataExpirapes(dataExpira.getTime());
+            pes.setTipoPes('A');
+            Classe clas = new Classe(1);
+            pes.setClassePes(clas);
+            pes.setEmpPes(null);
+            
+            controle.create(pes);
+            
+            //Fim Declarações
+        } catch (ParseException ex) {
+            Logger.getLogger(FrmCadFun.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalOrphanException ex) {
+            Logger.getLogger(FrmCadFun.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(FrmCadFun.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        char pes = m.getTipoPessoa();
+        System.out.println(pes);
+         if(pes == 'A')
+         {
+         lblTipoPes.setText("Aluno");
+         }
+         else if(pes == 'F')
+         {
+         lblTipoPes.setText("Funcionario");
+         }
+         else if(pes == 'P')
+         {
+             lblTipoPes.setText("Professores");
+         }
+             
+    }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        char pes = m.getTipoPessoa();
+        System.out.println(pes);
+         if(pes == 'A')
+         {
+         lblTipoPes.setText("Aluno");
+         }
+         else if(pes == 'F')
+         {
+         lblTipoPes.setText("Funcionario");
+         }
+         else if(pes == 'P')
+         {
+             lblTipoPes.setText("Professores");
+         }
+             
+    }//GEN-LAST:event_formWindowActivated
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JComboBox cbbClasse;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblClass;
+    private javax.swing.JLabel lblNum;
+    private javax.swing.JLabel lblTipoPes;
+    private javax.swing.JRadioButton rdbF;
+    private javax.swing.JRadioButton rdbM;
+    private javax.swing.JTable tblPessoas;
+    private javax.swing.JFormattedTextField txtCpf;
+    private javax.swing.JFormattedTextField txtDataNasc;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JFormattedTextField txtRg;
+    // End of variables declaration//GEN-END:variables
+}

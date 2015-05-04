@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="tccBibliotecaPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>entity.Pessoas</class>
+    <class>entity.Item</class>
+    <class>entity.Area</class>
+    <class>entity.Autor</class>
+    <class>entity.Editora</class>
+    <class>entity.CasaPub</class>
+    <class>entity.Emprestimo</class>
+    <class>entity.Genero</class>
+    <class>entity.Classe</class>
+    <class>entity.Colecoes</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://KOURY\DB:1433;databaseName=BibliotecaBD"/>
+      <property name="javax.persistence.jdbc.user" value="sa"/>
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      <property name="javax.persistence.jdbc.password" value="tesouro123"/>
+    </properties>
+  </persistence-unit>
+</persistence>
