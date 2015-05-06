@@ -5,18 +5,44 @@
  */
 package inicio;
 
+import controller.ItemJpaController;
+import entity.Area;
+import entity.Autor;
+import entity.CasaPub;
+import entity.Colecoes;
+import entity.Editora;
+import entity.Genero;
+import entity.Item;
+import java.awt.Component;
+import java.awt.LayoutManager;
+import java.awt.LayoutManager2;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.Persistence;
+import javax.swing.JComponent;
+import inicio.PnlLivro;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Dimension;
+import javax.swing.JButton;
 /**
  *
  * @author Pc
  */
 public class FrmCadItem extends javax.swing.JFrame {
+    
+    public char tipoItem = 'f';
 
     /**
      * Creates new form FrmCadItem
      */
     public FrmCadItem() {
+        
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); 
+        txtTitulo.setVisible(false);
+        
     }
 
     /**
@@ -27,178 +53,752 @@ public class FrmCadItem extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        btgIdioma = new javax.swing.ButtonGroup();
+        btgLegenda = new javax.swing.ButtonGroup();
+        btgCondicao = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txaObs = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        pnlIdioma = new javax.swing.JPanel();
+        rdbPortugues = new javax.swing.JRadioButton();
+        rdbIngles = new javax.swing.JRadioButton();
+        rdbLegEspanhol = new javax.swing.JRadioButton();
+        rdbLegIngles = new javax.swing.JRadioButton();
+        rdbLegPortugues = new javax.swing.JRadioButton();
+        rdbEspanhol = new javax.swing.JRadioButton();
+        rdbLegenda = new javax.swing.JRadioButton();
         txtLocal = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtEdi = new javax.swing.JTextField();
-        txtDataAq = new javax.swing.JFormattedTextField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        txtVol = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtPag = new javax.swing.JTextField();
+        cmbArea = new javax.swing.JComboBox();
+        lblArea = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
+        txtTitulo = new javax.swing.JTextField();
+        lblTipoItem = new javax.swing.JLabel();
+        lblCad = new javax.swing.JLabel();
+        lblGenero = new javax.swing.JLabel();
+        cmbGenero = new javax.swing.JComboBox();
+        lblAutor = new javax.swing.JLabel();
+        lblCasaPub = new javax.swing.JLabel();
+        lblEditora = new javax.swing.JLabel();
+        cmbEditora = new javax.swing.JComboBox();
+        cmbAutor = new javax.swing.JComboBox();
+        txtAno = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        rdbNovo = new javax.swing.JRadioButton();
+        rdbDesgastado = new javax.swing.JRadioButton();
+        rdbUsado = new javax.swing.JRadioButton();
+        rdbVelho = new javax.swing.JRadioButton();
+        lblIdioma = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        cbmCol = new javax.swing.JComboBox();
+        spnVolume = new javax.swing.JSpinner();
+        btnAddGenero = new javax.swing.JButton();
+        btnAddArea = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        spnPaginas = new javax.swing.JSpinner();
+        btnOg = new javax.swing.JButton();
+        cmbCasaPub = new javax.swing.JComboBox();
+        jButton6 = new javax.swing.JButton();
+        btnMudar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jScrollPane1.setOpaque(false);
+
+        txaObs.setColumns(20);
+        txaObs.setRows(5);
+        jScrollPane1.setViewportView(txaObs);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 203;
+        gridBagConstraints.ipady = 69;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 0);
+        getContentPane().add(jScrollPane1, gridBagConstraints);
 
         jLabel9.setText("Observação:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 60, 0, 0);
+        getContentPane().add(jLabel9, gridBagConstraints);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnlIdioma.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnlIdioma.setMaximumSize(new java.awt.Dimension(320, 103));
+        pnlIdioma.setMinimumSize(new java.awt.Dimension(320, 103));
+        pnlIdioma.setOpaque(false);
 
-        jLabel3.setText("Idioma:");
+        btgIdioma.add(rdbPortugues);
+        rdbPortugues.setSelected(true);
+        rdbPortugues.setText("Portugues");
+        rdbPortugues.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbPortuguesActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("Legenda:");
+        btgIdioma.add(rdbIngles);
+        rdbIngles.setText("Inglês");
+        rdbIngles.setEnabled(false);
 
-        jLabel5.setText("Condição:");
+        btgLegenda.add(rdbLegEspanhol);
+        rdbLegEspanhol.setText("Espanhol");
+        rdbLegEspanhol.setEnabled(false);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        btgLegenda.add(rdbLegIngles);
+        rdbLegIngles.setText("Inglês");
+        rdbLegIngles.setEnabled(false);
+
+        btgLegenda.add(rdbLegPortugues);
+        rdbLegPortugues.setText("Portugues");
+        rdbLegPortugues.setEnabled(false);
+
+        btgIdioma.add(rdbEspanhol);
+        rdbEspanhol.setText("Espanhol");
+        rdbEspanhol.setEnabled(false);
+
+        rdbLegenda.setText("Legenda");
+
+        javax.swing.GroupLayout pnlIdiomaLayout = new javax.swing.GroupLayout(pnlIdioma);
+        pnlIdioma.setLayout(pnlIdiomaLayout);
+        pnlIdiomaLayout.setHorizontalGroup(
+            pnlIdiomaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlIdiomaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlIdiomaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlIdiomaLayout.createSequentialGroup()
+                        .addComponent(rdbLegPortugues)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rdbLegIngles)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rdbLegEspanhol))
+                    .addGroup(pnlIdiomaLayout.createSequentialGroup()
+                        .addComponent(rdbPortugues)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rdbIngles)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rdbEspanhol)))
+                .addGap(73, 73, 73))
+            .addGroup(pnlIdiomaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addContainerGap(149, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(rdbLegenda)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlIdiomaLayout.setVerticalGroup(
+            pnlIdiomaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlIdiomaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addGroup(pnlIdiomaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdbPortugues)
+                    .addComponent(rdbIngles)
+                    .addComponent(rdbEspanhol))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(37, 37, 37))
+                .addComponent(rdbLegenda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlIdiomaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdbLegPortugues)
+                    .addComponent(rdbLegIngles)
+                    .addComponent(rdbLegEspanhol))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 27;
+        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.ipadx = -37;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 18, 13, 0);
+        getContentPane().add(pnlIdioma, gridBagConstraints);
+
+        txtLocal.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 172;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
+        getContentPane().add(txtLocal, gridBagConstraints);
 
         jLabel11.setText("Localização:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(22, 74, 0, 0);
+        getContentPane().add(jLabel11, gridBagConstraints);
 
         jLabel8.setText("Edição:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(4, 102, 0, 0);
+        getContentPane().add(jLabel8, gridBagConstraints);
 
-        jLabel7.setText("Data de Acquisição:");
+        txtEdi.setOpaque(false);
+        txtEdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEdiActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 172;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(1, 18, 0, 0);
+        getContentPane().add(txtEdi, gridBagConstraints);
 
         jLabel6.setText("Ano:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(27, 117, 0, 0);
+        getContentPane().add(jLabel6, gridBagConstraints);
 
         jLabel13.setText("Volume:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 96, 0, 0);
+        getContentPane().add(jLabel13, gridBagConstraints);
 
         jLabel10.setText("Paginas:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 95, 0, 0);
+        getContentPane().add(jLabel10, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 839, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(584, 584, 584)
-                            .addComponent(jLabel10)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtPag)
-                            .addGap(40, 40, 40))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(542, 542, 542)
-                            .addComponent(jLabel6)
-                            .addGap(18, 18, 18)
-                            .addComponent(jFormattedTextField1)
-                            .addGap(29, 29, 29))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel11))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtLocal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtEdi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(559, 559, 559)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtDataAq, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(8, 8, 8))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel13)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtVol, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(47, 47, 47)))))
-                    .addContainerGap()))
+        cmbArea.setEditable(true);
+        cmbArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "Abobora", "Kakitos", "Melancia", "Lodaica" }));
+        cmbArea.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 103;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
+        getContentPane().add(cmbArea, gridBagConstraints);
+
+        lblArea.setText("Area:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(22, 100, 0, 0);
+        getContentPane().add(lblArea, gridBagConstraints);
+
+        lblTitulo.setText("Titulo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 95, 0, 0);
+        getContentPane().add(lblTitulo, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 224;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 18, 0, 0);
+        getContentPane().add(txtTitulo, gridBagConstraints);
+
+        lblTipoItem.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblTipoItem.setText("________");
+        lblTipoItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblTipoItemMouseEntered(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 7, 0, 0);
+        getContentPane().add(lblTipoItem, gridBagConstraints);
+
+        lblCad.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblCad.setText("Cadastro de ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 29, 0, 0);
+        getContentPane().add(lblCad, gridBagConstraints);
+
+        lblGenero.setText("Genero:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(4, 86, 0, 0);
+        getContentPane().add(lblGenero, gridBagConstraints);
+
+        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbGenero.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 166;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(1, 18, 0, 0);
+        getContentPane().add(cmbGenero, gridBagConstraints);
+
+        lblAutor.setText("Autor:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(4, 96, 0, 0);
+        getContentPane().add(lblAutor, gridBagConstraints);
+
+        lblCasaPub.setText("Casa Publicadora:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(22, 29, 0, 0);
+        getContentPane().add(lblCasaPub, gridBagConstraints);
+
+        lblEditora.setText("Editora:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(22, 87, 0, 0);
+        getContentPane().add(lblEditora, gridBagConstraints);
+
+        cmbEditora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbEditora.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 166;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
+        getContentPane().add(cmbEditora, gridBagConstraints);
+
+        cmbAutor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbAutor.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 166;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(1, 18, 0, 0);
+        getContentPane().add(cmbAutor, gridBagConstraints);
+
+        txtAno.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 172;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
+        getContentPane().add(txtAno, gridBagConstraints);
+
+        jLabel18.setText("Coleção:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(22, 94, 0, 0);
+        getContentPane().add(jLabel18, gridBagConstraints);
+
+        jPanel14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel14.setOpaque(false);
+
+        btgCondicao.add(rdbNovo);
+        rdbNovo.setText("Novo");
+
+        btgCondicao.add(rdbDesgastado);
+        rdbDesgastado.setText("Desgastado");
+
+        btgCondicao.add(rdbUsado);
+        rdbUsado.setText("Usado");
+
+        btgCondicao.add(rdbVelho);
+        rdbVelho.setText("Velho");
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rdbDesgastado)
+                    .addComponent(rdbNovo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rdbUsado)
+                    .addComponent(rdbVelho))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(22, 22, 22)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel10)
-                        .addComponent(txtPag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(8, 8, 8)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtVol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtDataAq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtEdi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addGap(19, 19, 19)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel11)
-                                .addComponent(txtLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(57, 57, 57)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel9))
-                            .addGap(11, 11, 11)))
-                    .addGap(23, 23, 23)))
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdbNovo)
+                    .addComponent(rdbUsado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdbDesgastado)
+                    .addComponent(rdbVelho))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 21;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridheight = 6;
+        gridBagConstraints.ipadx = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 18, 0, 0);
+        getContentPane().add(jPanel14, gridBagConstraints);
+
+        lblIdioma.setText("Idioma:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 27;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 88, 0, 0);
+        getContentPane().add(lblIdioma, gridBagConstraints);
+
+        jLabel5.setText("Condição:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 21;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 87, 0, 0);
+        getContentPane().add(jLabel5, gridBagConstraints);
+
+        cbmCol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbmCol.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 114;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
+        getContentPane().add(cbmCol, gridBagConstraints);
+
+        spnVolume.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 0);
+        getContentPane().add(spnVolume, gridBagConstraints);
+
+        btnAddGenero.setText("+");
+        btnAddGenero.setOpaque(false);
+        btnAddGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddGeneroActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 0);
+        getContentPane().add(btnAddGenero, gridBagConstraints);
+
+        btnAddArea.setText("+");
+        btnAddArea.setOpaque(false);
+        btnAddArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddAreaActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
+        getContentPane().add(btnAddArea, gridBagConstraints);
+
+        jButton3.setText("+");
+        jButton3.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 0);
+        getContentPane().add(jButton3, gridBagConstraints);
+
+        jButton4.setText("+");
+        jButton4.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
+        getContentPane().add(jButton4, gridBagConstraints);
+
+        spnPaginas.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 148;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 18, 0, 0);
+        getContentPane().add(spnPaginas, gridBagConstraints);
+
+        btnOg.setText("OK");
+        btnOg.setOpaque(false);
+        btnOg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOgActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 27;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 57;
+        gridBagConstraints.ipady = 45;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(26, 7, 0, 0);
+        getContentPane().add(btnOg, gridBagConstraints);
+
+        cmbCasaPub.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCasaPub.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 166;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
+        getContentPane().add(cmbCasaPub, gridBagConstraints);
+
+        jButton6.setText("+");
+        jButton6.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
+        getContentPane().add(jButton6, gridBagConstraints);
+
+        btnMudar.setText("Mudar");
+        btnMudar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMudarActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 28;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 8;
+        gridBagConstraints.ipady = 21;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(9, 18, 0, 0);
+        getContentPane().add(btnMudar, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblTipoItemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTipoItemMouseEntered
+    }//GEN-LAST:event_lblTipoItemMouseEntered
+
+    private void rdbPortuguesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbPortuguesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbPortuguesActionPerformed
+
+    private void txtEdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEdiActionPerformed
+
+    }//GEN-LAST:event_txtEdiActionPerformed
+
+    private void btnOgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOgActionPerformed
+        Date date = new Date();
+        String idioma = "";
+        String legenda = "";
+        int condicao = 0;
+        Item item = new Item();
+        
+
+        ItemJpaController cont = new ItemJpaController(Persistence.createEntityManagerFactory("tccBibliotecaPU"));
+
+        
+
+        //Idioma e Lengenda
+        if(rdbPortugues.isSelected()){
+            idioma = "Português";
+        }
+        if(rdbIngles.isSelected()){
+            idioma = "Inglês";
+        }
+        if(rdbEspanhol.isSelected()){
+            idioma = "Espanhol";
+        }
+
+        if(!rdbLegenda.isSelected()){
+            legenda = "";
+        }
+        if(rdbLegPortugues.isSelected()){
+            legenda = "Portugês";
+        }if(rdbLegIngles.isSelected()){
+            legenda = "Inglês";
+        }if(rdbLegEspanhol.isSelected()){
+            legenda = "Espanhol";
+        }
+
+        //Condição
+        if(rdbNovo.isSelected()){
+            condicao = 1;
+        }if(rdbUsado.isSelected()){
+            condicao = 2;
+        }if(rdbDesgastado.isSelected()){
+            condicao = 3;
+        }if(rdbVelho.isSelected()){
+            condicao = 4;
+        }
+
+        //Declara Chave Primaria
+        int areaInt = cmbArea.getSelectedIndex();
+        int generoInt = cmbGenero.getSelectedIndex();
+        int autorInt = cmbAutor.getSelectedIndex();
+        int colecaoInt = cbmCol.getSelectedIndex();
+        int casaInt = cmbCasaPub.getSelectedIndex();
+        int editoraInt = cmbEditora.getSelectedIndex();
+
+        //Declara Objetos
+        Area area = new Area(areaInt);
+        Genero genero = new Genero(generoInt);
+        Autor autor = new Autor(autorInt);
+        Colecoes col = new Colecoes(colecaoInt);
+        CasaPub casa = new CasaPub(casaInt);
+        Editora editora = new Editora(editoraInt);
+
+        //Set cont to item
+        item.setAnoItem(Integer.parseInt(txtAno.getText()));
+        item.setAreaItem(area);
+        item.setTituloItem(txtTitulo.getText());
+        item.setGeneroItem(genero);
+        item.setObsItem(txaObs.getText());
+        item.setIdiomaItem(idioma);
+        item.setCondicaoItem(condicao);
+        item.setAutorItem(autor);
+        item.setDataAquisicaoitem(date);
+        item.setLegendaItem(legenda);
+        item.setEdicaoItem(Integer.parseInt(txtEdi.getText()));
+        item.setColecaoItem(col);
+        item.setCasaPubitem(casa);
+        item.setVolumeAtualitem((Integer) spnVolume.getValue());
+        item.setPaginasItem((Integer) spnPaginas.getValue());
+        item.setLocalizacaoItem(txtLocal.getText());
+        item.setEditoraItem(editora);
+
+    }//GEN-LAST:event_btnOgActionPerformed
+
+    private void btnAddAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAreaActionPerformed
+
+    }//GEN-LAST:event_btnAddAreaActionPerformed
+
+    private void btnAddGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGeneroActionPerformed
+
+    }//GEN-LAST:event_btnAddGeneroActionPerformed
+
+    private void btnMudarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarActionPerformed
+        switch(tipoItem){
+            case('f'):
+                allConponentsVisible(false);
+                componentVisible(lblArea, true);
+                componentVisible(cmbArea, true);
+                componentVisible(pnlIdioma, true);
+                componentVisible(lblIdioma, true);
+                componentVisible(lblTitulo, true);
+                componentVisible(txtTitulo, true);
+                componentVisible(lblGenero, true);
+                componentVisible(cmbGenero, true);
+                componentVisible(btnMudar, true);
+                componentVisible(btnOg, true);
+                componentVisible(lblCad, true);
+                componentVisible(lblTipoItem, true);
+               
+                lblTipoItem.setText("Folheto");
+                tipoItem = '1';
+                this.pack();
+                this.revalidate();
+                
+            break;
+            case('1'):
+                allConponentsVisible(true);
+                this.pack();
+                this.revalidate();
+                lblTipoItem.setText("________");
+                tipoItem = 'f';
+                break;
+        }
+    }//GEN-LAST:event_btnMudarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,7 +811,7 @@ public class FrmCadItem extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -236,24 +836,75 @@ public class FrmCadItem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.ButtonGroup btgCondicao;
+    private javax.swing.ButtonGroup btgIdioma;
+    private javax.swing.ButtonGroup btgLegenda;
+    private javax.swing.JButton btnAddArea;
+    private javax.swing.JButton btnAddGenero;
+    private javax.swing.JButton btnMudar;
+    private javax.swing.JButton btnOg;
+    private javax.swing.JComboBox cbmCol;
+    private javax.swing.JComboBox cmbArea;
+    private javax.swing.JComboBox cmbAutor;
+    private javax.swing.JComboBox cmbCasaPub;
+    private javax.swing.JComboBox cmbEditora;
+    private javax.swing.JComboBox cmbGenero;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JFormattedTextField txtDataAq;
+    private javax.swing.JLabel lblArea;
+    private javax.swing.JLabel lblAutor;
+    private javax.swing.JLabel lblCad;
+    private javax.swing.JLabel lblCasaPub;
+    private javax.swing.JLabel lblEditora;
+    private javax.swing.JLabel lblGenero;
+    private javax.swing.JLabel lblIdioma;
+    private javax.swing.JLabel lblTipoItem;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel pnlIdioma;
+    private javax.swing.JRadioButton rdbDesgastado;
+    private javax.swing.JRadioButton rdbEspanhol;
+    private javax.swing.JRadioButton rdbIngles;
+    private javax.swing.JRadioButton rdbLegEspanhol;
+    private javax.swing.JRadioButton rdbLegIngles;
+    private javax.swing.JRadioButton rdbLegPortugues;
+    private javax.swing.JRadioButton rdbLegenda;
+    private javax.swing.JRadioButton rdbNovo;
+    private javax.swing.JRadioButton rdbPortugues;
+    private javax.swing.JRadioButton rdbUsado;
+    private javax.swing.JRadioButton rdbVelho;
+    private javax.swing.JSpinner spnPaginas;
+    private javax.swing.JSpinner spnVolume;
+    private javax.swing.JTextArea txaObs;
+    private javax.swing.JTextField txtAno;
     private javax.swing.JTextField txtEdi;
     private javax.swing.JTextField txtLocal;
-    private javax.swing.JTextField txtPag;
-    private javax.swing.JTextField txtVol;
+    private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
+    
+    
+    private void componentVisible(Component container, Boolean hab) {
+        
+            container.setVisible(hab);
+            this.revalidate();
+        }
+    
+    private void allConponentsVisible(Boolean hab){
+        Component[] components = this.getContentPane().getComponents();
+        
+        for(Component c : components){
+        c.setVisible(hab);
+        }
+    }
 }
+
