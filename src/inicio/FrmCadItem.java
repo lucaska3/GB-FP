@@ -14,25 +14,18 @@ import entity.Editora;
 import entity.Genero;
 import entity.Item;
 import java.awt.Component;
-import java.awt.LayoutManager;
-import java.awt.LayoutManager2;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.persistence.Persistence;
-import javax.swing.JComponent;
-import inicio.PnlLivro;
-import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Dimension;
-import javax.swing.JButton;
+import java.awt.GridBagConstraints;
+import java.awt.Point;
+import java.util.Date;
+import javax.persistence.Persistence;
 /**
  *
  * @author Pc
  */
 public class FrmCadItem extends javax.swing.JFrame {
     
-    public char tipoItem = 'f';
+    public char tipoItem = '1';
 
     /**
      * Creates new form FrmCadItem
@@ -76,21 +69,16 @@ public class FrmCadItem extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        cmbArea = new javax.swing.JComboBox();
         lblArea = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
-        txtTitulo = new javax.swing.JTextField();
         lblTipoItem = new javax.swing.JLabel();
         lblCad = new javax.swing.JLabel();
         lblGenero = new javax.swing.JLabel();
-        cmbGenero = new javax.swing.JComboBox();
         lblAutor = new javax.swing.JLabel();
         lblCasaPub = new javax.swing.JLabel();
         lblEditora = new javax.swing.JLabel();
-        cmbEditora = new javax.swing.JComboBox();
-        cmbAutor = new javax.swing.JComboBox();
         txtAno = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
+        lblCol = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         rdbNovo = new javax.swing.JRadioButton();
         rdbDesgastado = new javax.swing.JRadioButton();
@@ -102,13 +90,18 @@ public class FrmCadItem extends javax.swing.JFrame {
         spnVolume = new javax.swing.JSpinner();
         btnAddGenero = new javax.swing.JButton();
         btnAddArea = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAddAutor = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         spnPaginas = new javax.swing.JSpinner();
         btnOg = new javax.swing.JButton();
-        cmbCasaPub = new javax.swing.JComboBox();
-        jButton6 = new javax.swing.JButton();
+        btnAddCasaPub = new javax.swing.JButton();
         btnMudar = new javax.swing.JButton();
+        txtTitulo = new javax.swing.JTextField();
+        cmbGenero = new javax.swing.JComboBox();
+        cmbCasaPub = new javax.swing.JComboBox();
+        cmbEditora = new javax.swing.JComboBox();
+        cmbAutor = new javax.swing.JComboBox();
+        cmbArea = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -116,29 +109,31 @@ public class FrmCadItem extends javax.swing.JFrame {
         jScrollPane1.setOpaque(false);
 
         txaObs.setColumns(20);
+        txaObs.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         txaObs.setRows(5);
         jScrollPane1.setViewportView(txaObs);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 18;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.gridy = 21;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridheight = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 203;
-        gridBagConstraints.ipady = 69;
+        gridBagConstraints.ipadx = 360;
+        gridBagConstraints.ipady = 178;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 33, 0, 0);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
+        jLabel9.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         jLabel9.setText("Observação:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridy = 21;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 60, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 65, 0, 0);
         getContentPane().add(jLabel9, gridBagConstraints);
 
         pnlIdioma.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -147,6 +142,7 @@ public class FrmCadItem extends javax.swing.JFrame {
         pnlIdioma.setOpaque(false);
 
         btgIdioma.add(rdbPortugues);
+        rdbPortugues.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         rdbPortugues.setSelected(true);
         rdbPortugues.setText("Portugues");
         rdbPortugues.addActionListener(new java.awt.event.ActionListener() {
@@ -156,25 +152,31 @@ public class FrmCadItem extends javax.swing.JFrame {
         });
 
         btgIdioma.add(rdbIngles);
+        rdbIngles.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         rdbIngles.setText("Inglês");
         rdbIngles.setEnabled(false);
 
         btgLegenda.add(rdbLegEspanhol);
+        rdbLegEspanhol.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         rdbLegEspanhol.setText("Espanhol");
         rdbLegEspanhol.setEnabled(false);
 
         btgLegenda.add(rdbLegIngles);
+        rdbLegIngles.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         rdbLegIngles.setText("Inglês");
         rdbLegIngles.setEnabled(false);
 
         btgLegenda.add(rdbLegPortugues);
+        rdbLegPortugues.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         rdbLegPortugues.setText("Portugues");
         rdbLegPortugues.setEnabled(false);
 
         btgIdioma.add(rdbEspanhol);
+        rdbEspanhol.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         rdbEspanhol.setText("Espanhol");
         rdbEspanhol.setEnabled(false);
 
+        rdbLegenda.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         rdbLegenda.setText("Legenda");
 
         javax.swing.GroupLayout pnlIdiomaLayout = new javax.swing.GroupLayout(pnlIdioma);
@@ -191,8 +193,9 @@ public class FrmCadItem extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rdbLegEspanhol))
                     .addGroup(pnlIdiomaLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
                         .addComponent(rdbPortugues)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rdbIngles)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rdbEspanhol)))
@@ -217,46 +220,51 @@ public class FrmCadItem extends javax.swing.JFrame {
                     .addComponent(rdbLegPortugues)
                     .addComponent(rdbLegIngles)
                     .addComponent(rdbLegEspanhol))
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 27;
-        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridy = 25;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.gridheight = 4;
-        gridBagConstraints.ipadx = -37;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 18, 13, 0);
+        gridBagConstraints.insets = new java.awt.Insets(29, 33, 0, 0);
         getContentPane().add(pnlIdioma, gridBagConstraints);
 
+        txtLocal.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         txtLocal.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 172;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(21, 18, 0, 0);
         getContentPane().add(txtLocal, gridBagConstraints);
 
+        jLabel11.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         jLabel11.setText("Localização:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 74, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(24, 100, 0, 0);
         getContentPane().add(jLabel11, gridBagConstraints);
 
+        jLabel8.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         jLabel8.setText("Edição:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 102, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(24, 134, 0, 0);
         getContentPane().add(jLabel8, gridBagConstraints);
 
+        txtEdi.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         txtEdi.setOpaque(false);
         txtEdi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,78 +272,62 @@ public class FrmCadItem extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 172;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(1, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(21, 18, 0, 0);
         getContentPane().add(txtEdi, gridBagConstraints);
 
+        jLabel6.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         jLabel6.setText("Ano:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 117, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(24, 150, 0, 0);
         getContentPane().add(jLabel6, gridBagConstraints);
 
+        jLabel13.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         jLabel13.setText("Volume:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 18;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 96, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 126, 0, 0);
         getContentPane().add(jLabel13, gridBagConstraints);
 
+        jLabel10.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         jLabel10.setText("Paginas:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridx = 10;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 95, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(29, 126, 0, 0);
         getContentPane().add(jLabel10, gridBagConstraints);
 
-        cmbArea.setEditable(true);
-        cmbArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "Abobora", "Kakitos", "Melancia", "Lodaica" }));
-        cmbArea.setOpaque(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 103;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
-        getContentPane().add(cmbArea, gridBagConstraints);
-
+        lblArea.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         lblArea.setText("Area:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 100, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(24, 112, 0, 0);
         getContentPane().add(lblArea, gridBagConstraints);
 
+        lblTitulo.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         lblTitulo.setText("Titulo:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 95, 0, 0);
-        getContentPane().add(lblTitulo, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 224;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 18, 0, 0);
-        getContentPane().add(txtTitulo, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(29, 105, 0, 0);
+        getContentPane().add(lblTitulo, gridBagConstraints);
 
         lblTipoItem.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTipoItem.setText("________");
@@ -349,7 +341,7 @@ public class FrmCadItem extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 7, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 7, 0, 0);
         getContentPane().add(lblTipoItem, gridBagConstraints);
 
         lblCad.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -359,109 +351,84 @@ public class FrmCadItem extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 29, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 29, 0, 0);
         getContentPane().add(lblCad, gridBagConstraints);
 
+        lblGenero.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         lblGenero.setText("Genero:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 86, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(24, 95, 0, 0);
         getContentPane().add(lblGenero, gridBagConstraints);
 
-        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbGenero.setOpaque(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 166;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(1, 18, 0, 0);
-        getContentPane().add(cmbGenero, gridBagConstraints);
-
+        lblAutor.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         lblAutor.setText("Autor:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 96, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(24, 105, 0, 0);
         getContentPane().add(lblAutor, gridBagConstraints);
 
+        lblCasaPub.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         lblCasaPub.setText("Casa Publicadora:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 29, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(24, 63, 0, 0);
         getContentPane().add(lblCasaPub, gridBagConstraints);
 
+        lblEditora.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         lblEditora.setText("Editora:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 87, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(24, 96, 0, 0);
         getContentPane().add(lblEditora, gridBagConstraints);
 
-        cmbEditora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbEditora.setOpaque(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 166;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
-        getContentPane().add(cmbEditora, gridBagConstraints);
-
-        cmbAutor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbAutor.setOpaque(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 166;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(1, 18, 0, 0);
-        getContentPane().add(cmbAutor, gridBagConstraints);
-
+        txtAno.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         txtAno.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 172;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(21, 18, 0, 0);
         getContentPane().add(txtAno, gridBagConstraints);
 
-        jLabel18.setText("Coleção:");
+        lblCol.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
+        lblCol.setText("Coleção:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 94, 0, 0);
-        getContentPane().add(jLabel18, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(24, 91, 0, 0);
+        getContentPane().add(lblCol, gridBagConstraints);
 
         jPanel14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel14.setOpaque(false);
 
         btgCondicao.add(rdbNovo);
+        rdbNovo.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         rdbNovo.setText("Novo");
 
         btgCondicao.add(rdbDesgastado);
+        rdbDesgastado.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         rdbDesgastado.setText("Desgastado");
 
         btgCondicao.add(rdbUsado);
+        rdbUsado.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         rdbUsado.setText("Usado");
 
         btgCondicao.add(rdbVelho);
+        rdbVelho.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         rdbVelho.setText("Velho");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -477,7 +444,7 @@ public class FrmCadItem extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rdbUsado)
                     .addComponent(rdbVelho))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,53 +461,60 @@ public class FrmCadItem extends javax.swing.JFrame {
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 11;
         gridBagConstraints.gridy = 21;
         gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 6;
-        gridBagConstraints.ipadx = 12;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 60;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(32, 18, 0, 0);
         getContentPane().add(jPanel14, gridBagConstraints);
 
+        lblIdioma.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         lblIdioma.setText("Idioma:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 27;
+        gridBagConstraints.gridy = 25;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 88, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(29, 97, 0, 0);
         getContentPane().add(lblIdioma, gridBagConstraints);
 
+        jLabel5.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         jLabel5.setText("Condição:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridx = 10;
         gridBagConstraints.gridy = 21;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 87, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(32, 115, 0, 0);
         getContentPane().add(jLabel5, gridBagConstraints);
 
+        cbmCol.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         cbmCol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbmCol.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 114;
+        gridBagConstraints.ipadx = 75;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(21, 33, 0, 0);
         getContentPane().add(cbmCol, gridBagConstraints);
 
+        spnVolume.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         spnVolume.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 18;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 134;
+        gridBagConstraints.ipady = -10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 0);
         getContentPane().add(spnVolume, gridBagConstraints);
 
+        btnAddGenero.setFont(new java.awt.Font("Andalus", 0, 18)); // NOI18N
         btnAddGenero.setText("+");
         btnAddGenero.setOpaque(false);
         btnAddGenero.addActionListener(new java.awt.event.ActionListener() {
@@ -549,14 +523,14 @@ public class FrmCadItem extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
         getContentPane().add(btnAddGenero, gridBagConstraints);
 
+        btnAddArea.setFont(new java.awt.Font("Andalus", 0, 18)); // NOI18N
         btnAddArea.setText("+");
         btnAddArea.setOpaque(false);
         btnAddArea.addActionListener(new java.awt.event.ActionListener() {
@@ -565,47 +539,48 @@ public class FrmCadItem extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
         getContentPane().add(btnAddArea, gridBagConstraints);
 
-        jButton3.setText("+");
-        jButton3.setOpaque(false);
+        btnAddAutor.setFont(new java.awt.Font("Andalus", 0, 18)); // NOI18N
+        btnAddAutor.setText("+");
+        btnAddAutor.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 0);
-        getContentPane().add(jButton3, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
+        getContentPane().add(btnAddAutor, gridBagConstraints);
 
+        jButton4.setFont(new java.awt.Font("Andalus", 0, 18)); // NOI18N
         jButton4.setText("+");
         jButton4.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridheight = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
         getContentPane().add(jButton4, gridBagConstraints);
 
+        spnPaginas.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         spnPaginas.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 11;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 148;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 141;
+        gridBagConstraints.ipady = -10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(29, 18, 0, 0);
         getContentPane().add(spnPaginas, gridBagConstraints);
 
+        btnOg.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         btnOg.setText("OK");
         btnOg.setOpaque(false);
         btnOg.addActionListener(new java.awt.event.ActionListener() {
@@ -614,39 +589,28 @@ public class FrmCadItem extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 27;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 57;
-        gridBagConstraints.ipady = 45;
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 26;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 51;
+        gridBagConstraints.ipady = 35;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 7, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 49, 0, 0);
         getContentPane().add(btnOg, gridBagConstraints);
 
-        cmbCasaPub.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbCasaPub.setOpaque(false);
+        btnAddCasaPub.setFont(new java.awt.Font("Andalus", 0, 18)); // NOI18N
+        btnAddCasaPub.setText("+");
+        btnAddCasaPub.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 166;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
-        getContentPane().add(cmbCasaPub, gridBagConstraints);
-
-        jButton6.setText("+");
-        jButton6.setOpaque(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
-        getContentPane().add(jButton6, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
+        getContentPane().add(btnAddCasaPub, gridBagConstraints);
 
+        btnMudar.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
         btnMudar.setText("Mudar");
         btnMudar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -654,14 +618,89 @@ public class FrmCadItem extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 28;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 8;
-        gridBagConstraints.ipady = 21;
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 26;
+        gridBagConstraints.ipadx = 14;
+        gridBagConstraints.ipady = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(32, 28, 0, 0);
         getContentPane().add(btnMudar, gridBagConstraints);
+
+        txtTitulo.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 148;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(26, 33, 0, 0);
+        getContentPane().add(txtTitulo, gridBagConstraints);
+
+        cmbGenero.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
+        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbGenero.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 75;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 33, 0, 0);
+        getContentPane().add(cmbGenero, gridBagConstraints);
+
+        cmbCasaPub.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
+        cmbCasaPub.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCasaPub.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 75;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 18, 0, 0);
+        getContentPane().add(cmbCasaPub, gridBagConstraints);
+
+        cmbEditora.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
+        cmbEditora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbEditora.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.ipadx = 75;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 33, 0, 0);
+        getContentPane().add(cmbEditora, gridBagConstraints);
+
+        cmbAutor.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
+        cmbAutor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbAutor.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 75;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 33, 0, 0);
+        getContentPane().add(cmbAutor, gridBagConstraints);
+
+        cmbArea.setEditable(true);
+        cmbArea.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
+        cmbArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "Abobora", "Kakitos", "Melancia", "Lodaica" }));
+        cmbArea.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 33, 0, 0);
+        getContentPane().add(cmbArea, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -769,35 +808,22 @@ public class FrmCadItem extends javax.swing.JFrame {
 
     private void btnMudarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarActionPerformed
         switch(tipoItem){
-            case('f'):
-                allConponentsVisible(false);
-                componentVisible(lblArea, true);
-                componentVisible(cmbArea, true);
-                componentVisible(pnlIdioma, true);
-                componentVisible(lblIdioma, true);
-                componentVisible(lblTitulo, true);
-                componentVisible(txtTitulo, true);
-                componentVisible(lblGenero, true);
-                componentVisible(cmbGenero, true);
-                componentVisible(btnMudar, true);
-                componentVisible(btnOg, true);
-                componentVisible(lblCad, true);
-                componentVisible(lblTipoItem, true);
-               
-                lblTipoItem.setText("Folheto");
-                tipoItem = '1';
-                this.pack();
-                this.revalidate();
+            case('1'):
+                ficha();
                 
             break;
-            case('1'):
+            case('2'):
+                dvd();
+                break;
+                
+            case('3'):
                 allConponentsVisible(true);
-                this.pack();
-                this.revalidate();
-                lblTipoItem.setText("________");
-                tipoItem = 'f';
+                tipoItem = '1';
                 break;
         }
+        
+        
+        
     }//GEN-LAST:event_btnMudarActionPerformed
 
     /**
@@ -840,6 +866,8 @@ public class FrmCadItem extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btgIdioma;
     private javax.swing.ButtonGroup btgLegenda;
     private javax.swing.JButton btnAddArea;
+    private javax.swing.JButton btnAddAutor;
+    private javax.swing.JButton btnAddCasaPub;
     private javax.swing.JButton btnAddGenero;
     private javax.swing.JButton btnMudar;
     private javax.swing.JButton btnOg;
@@ -849,13 +877,10 @@ public class FrmCadItem extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbCasaPub;
     private javax.swing.JComboBox cmbEditora;
     private javax.swing.JComboBox cmbGenero;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
@@ -866,6 +891,7 @@ public class FrmCadItem extends javax.swing.JFrame {
     private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblCad;
     private javax.swing.JLabel lblCasaPub;
+    private javax.swing.JLabel lblCol;
     private javax.swing.JLabel lblEditora;
     private javax.swing.JLabel lblGenero;
     private javax.swing.JLabel lblIdioma;
@@ -892,7 +918,7 @@ public class FrmCadItem extends javax.swing.JFrame {
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
     
-    
+    //Ultilitarios
     private void componentVisible(Component container, Boolean hab) {
         
             container.setVisible(hab);
@@ -906,5 +932,57 @@ public class FrmCadItem extends javax.swing.JFrame {
         c.setVisible(hab);
         }
     }
+    
+    //Tipos Formulario
+    
+    private void ficha(){
+        allConponentsVisible(false);
+                componentVisible(lblArea, true);
+                componentVisible(cmbArea, true);
+                componentVisible(pnlIdioma, true);
+                componentVisible(lblIdioma, true);
+                componentVisible(lblTitulo, true);
+                componentVisible(txtTitulo, true);
+                componentVisible(lblGenero, true);
+                componentVisible(cmbGenero, true);
+                componentVisible(btnMudar, true);
+                componentVisible(btnOg, true);
+                componentVisible(lblCad, true);
+                componentVisible(lblTipoItem, true);
+               
+                lblTipoItem.setText("Folheto");
+                tipoItem = '2';
+                this.pack();
+                this.revalidate();
+    }
+    
+    private void dvd(){
+        
+        componentVisible(lblArea, true);
+                componentVisible(cmbArea, true);
+                componentVisible(pnlIdioma, true);
+                componentVisible(lblIdioma, true);
+                componentVisible(lblTitulo, true);
+                componentVisible(txtTitulo, true);
+                componentVisible(lblGenero, true);
+                componentVisible(cmbGenero, true);
+                componentVisible(btnMudar, true);
+                componentVisible(btnOg, true);
+                componentVisible(lblCad, true);
+                componentVisible(lblTipoItem, true);
+                componentVisible(cmbEditora, true);
+                componentVisible(lblEditora, true);
+                componentVisible(cbmCol, true);
+                componentVisible(lblCol, true);
+                GridBagConstraints cCbm = new GridBagConstraints();
+                GridBagConstraints cLbl = new GridBagConstraints();
+                cLbl.gridx = 0;
+                cCbm.gridx = 1;
+                
+                this.pack();
+                this.revalidate();
+                
+    }
+    
 }
 
