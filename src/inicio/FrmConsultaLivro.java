@@ -6,12 +6,17 @@
 
 package inicio;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import entity.Item;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 /**
  *
  * @author fp0520141051
@@ -23,6 +28,8 @@ public class FrmConsultaLivro extends javax.swing.JFrame {
      */
     public FrmConsultaLivro() {
         initComponents();
+        String productName = request.getParameter("product_name");
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -151,11 +158,9 @@ public class FrmConsultaLivro extends javax.swing.JFrame {
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
     if(rdTitulo.isSelected() == true){
-    Item em = new Item();
-    List results = em.createNamedQuery("Voter.findvoter")
-    .setParameter("voterID", "blah")
-    .setParameter("password","blahblahblah")
-    .getResultList();
+        
+EntityManagerFactory em = Persistence.createEntityManagerFactory("tccBibliotecaPU");
+Query query = em.createNamedQuery("Item.findByTituloItem");
     }
     else if(rdEditora.isSelected() == true){
         
